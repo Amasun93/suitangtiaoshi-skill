@@ -1,0 +1,13 @@
+{
+  "students": [
+    {
+      "number": 1,
+      "name": "示例学生",
+      "aliases": ["小示例"],
+      "grade": "X5",
+      "project": "无障碍智能装置",
+      "project_short": "智能装置",
+      "project_aliases": ["旧项目名", "装置简称"]
+    }
+  ]
+}

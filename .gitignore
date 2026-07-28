@@ -1,0 +1,8 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+整理预演*.json
+整理预演*.md
+归档执行结果*.json
+档案检查*.json

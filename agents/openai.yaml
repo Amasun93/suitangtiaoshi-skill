@@ -1,0 +1,4 @@
+interface:
+  display_name: "随堂调试 Skill"
+  short_description: "面向教师的学生项目素材批量识别、规范命名与安全归档工具"
+  default_prompt: "使用 $suitangtiaoshi-skill 批量整理这批学生项目素材，先生成归档预演清单供我确认。"

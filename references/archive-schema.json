@@ -1,0 +1,52 @@
+{
+  "schema_version": "suitangtiaoshi-archive-v1",
+  "archive_name_template": "随堂调试-{student}-{project}",
+  "folders": [
+    {"key": "topic_book", "folder": "01 开题书", "label": "开题书", "required": true, "minimum_files": 1},
+    {"key": "project_manual", "folder": "02 学生项目手册", "label": "学生项目手册", "required": true, "minimum_files": 1},
+    {"key": "drawings", "folder": "03 项目图纸", "label": "项目图纸", "required": true, "minimum_files": null},
+    {"key": "code", "folder": "04 项目代码", "label": "项目代码", "required": true, "minimum_files": null, "preserve_tree": true},
+    {
+      "key": "key_images",
+      "folder": "05 项目关键性图片",
+      "label": "项目关键性图片",
+      "required": true,
+      "minimum_files": null,
+      "subitems": [
+        {"key": "function_images", "folder": "功能实现图（4张）", "label": "功能实现", "minimum_files": 4},
+        {"key": "experiment_images", "folder": "实验关键图片（6张）", "label": "实验关键", "minimum_files": null, "target_files": 6},
+        {"key": "prototype_images", "folder": "项目原型图（1-2张）", "label": "装置原型", "minimum_files": 1, "maximum_files": 2},
+        {"key": "process_images", "folder": "制作过程关键图（5张以上）", "label": "制作过程", "minimum_files": 5},
+        {"key": "reference_images", "folder": "其他参考资料", "label": "参考资料", "minimum_files": null}
+      ]
+    },
+    {"key": "defense_ppt", "folder": "06 答辩ppt", "label": "答辩PPT", "required": true, "minimum_files": 1},
+    {"key": "demo_video", "folder": "07 项目视频", "label": "演示视频", "required": true, "minimum_files": 1},
+    {"key": "handover_form", "folder": "08 项目装置交接单", "label": "项目装置交接单", "required": true, "minimum_files": 1},
+    {"key": "student_paper", "folder": "09 可选-学生论文", "label": "学生论文", "required": false, "minimum_files": null},
+    {"key": "research_log", "folder": "10 研究日志", "label": "研究日志", "required": false, "minimum_files": null, "preserve_tree": true},
+    {"key": "pending", "folder": "99 待确认", "label": "待确认", "required": false, "minimum_files": null, "preserve_tree": true}
+  ],
+  "extensions": {
+    "images": [".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif", ".bmp", ".tif", ".tiff"],
+    "videos": [".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm"],
+    "drawings": [".stl", ".3mf", ".step", ".stp", ".obj", ".fcstd", ".dwg", ".dxf", ".svg", ".lcpx", ".scad"],
+    "code": [".py", ".ino", ".mp", ".sb3", ".hex", ".c", ".cc", ".cpp", ".h", ".hpp", ".js", ".mjs", ".ts", ".json", ".yaml", ".yml"],
+    "presentations": [".ppt", ".pptx", ".key"]
+  },
+  "keywords": {
+    "topic_book": ["开题", "选题", "项目方案", "立项"],
+    "project_manual": ["学生项目手册", "项目手册", "学习手册", "制作手册"],
+    "drawings": ["项目图纸", "图纸", "结构图", "原理图", "接线图", "电路图", "模型", "建模", "三维"],
+    "code": ["项目代码", "代码", "程序", "源码", "固件", "code", "src"],
+    "defense_ppt": ["答辩", "路演", "汇报ppt", "展示ppt"],
+    "demo_video": ["演示视频", "项目视频", "讲解视频", "展示视频"],
+    "handover_form": ["交接单", "签收单", "装置交接"],
+    "student_paper": ["学生论文", "研究论文", "小论文"],
+    "research_log": ["研究日志", "学习日志", "课堂日志", "每日复盘", "视频日志"],
+    "function_images": ["功能", "实现", "效果", "运行"],
+    "experiment_images": ["实验", "测试", "测量", "数据"],
+    "prototype_images": ["原型", "整体", "装置", "外观", "成品"],
+    "process_images": ["制作", "过程", "焊接", "组装", "调试", "加工", "建模"]
+  }
+}
