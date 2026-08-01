@@ -1,13 +1,31 @@
 ---
 name: suitangtiaoshi-skill
-description: Batch-organize teachers' classroom project materials into per-student suitangtiaoshi delivery archives. Use when a teacher needs to inspect an intake folder, match files to students and projects, classify and rename documents, drawings, code, images, presentations, videos, handover forms, papers, or research logs, generate a dry-run review plan, safely copy approved materials into the standard archive structure, deduplicate by SHA-256, or audit unresolved items. Designed for teacher-side bulk filing; never delete source materials or guess ambiguous student ownership.
+description: "Teacher-side classroom support for two connected workflows: (1) batch-organize student project materials into per-student delivery archives with preview, confirmation, deduplication, and audit; (2) generate or polish daily parent feedback from D1-D7 course templates and teachers' factual student observations. Use when a teacher asks to organize classroom materials, inspect archive gaps, prepare a daily class recap, polish a student's classroom performance note, or batch-generate parent-ready feedback. Never delete source materials, guess student identity, or invent classroom facts."
 ---
 
-# 随堂调试：教师批量整理
+# 随堂调试：教师课堂工作流
 
-本 Skill 先提供“整理归档”核心能力。它把老师收到的散乱素材整理进每名学生的正式母档案，同时保留人工审核环节。
+本 Skill 面向教师，提供两项相互关联但独立执行的能力：
 
-## 固定原则
+1. 整理学生项目素材并检查档案缺项。
+2. 根据真实课堂情况生成每日家长回课。
+
+## 路由
+
+- 老师提出整理、归档、分类、去重、缺项检查时，执行“材料整理与归档”。
+- 老师提出回课、家长反馈、学生表现润色、D1—D7模板或成长总结时，必须完整读取 [daily-parent-feedback.md](references/daily-parent-feedback.md)。需要生成当天公共内容时，再完整读取 [seven-day-feedback-templates.md](references/seven-day-feedback-templates.md)。
+- 同一请求同时包含素材整理和回课时，先核对素材事实，再生成回课；归档写入仍需单独确认。
+
+## 共通原则
+
+- 以老师确认的事实为最高优先级，不把计划、模板或AI建议写成已经完成。
+- 从学生名单读取准确姓名；语音转写、文件名或旧消息与名单冲突时先确认。
+- 保留“老师帮助”“AI辅助”“尚未完成”等责任与进度边界。
+- 不上传学生名单、个人观察、照片、项目材料或密钥到 Skill 仓库。
+
+## 材料整理与归档
+
+### 固定原则
 
 - 先预演、后执行。第一次运行只能生成整理计划，不直接归档。
 - 只复制，不移动、不删除源文件。
@@ -18,13 +36,13 @@ description: Batch-organize teachers' classroom project materials into per-stude
 - 图片、视频、签字、项目事实和材料质量始终需要人工核验。
 - 代码项目保留原有内部目录和文件名，避免破坏依赖关系。
 
-## 标准目录
+### 标准目录
 
 每名学生使用 `随堂调试-{学生姓名}-{项目名称}`，目录结构以 [archive-schema.json](references/archive-schema.json) 为准。正式材料进入 `01—09`，课堂研究日志进入 `10 研究日志`，尚未确认的材料使用 `99 待确认`。
 
-## 整理流程
+### 整理流程
 
-### 与老师沟通
+#### 与老师沟通
 
 - 老师直接提供文件或文件夹时，先自行定位其路径，不要求老师手写技术参数。
 - 缺少素材目录、档案目录或学生清单时，只询问当前最关键的一项，并给出已找到的候选位置。
@@ -34,7 +52,7 @@ description: Batch-organize teachers' classroom project materials into per-stude
 - 得到回答后由 AI 生成或更新覆盖规则，再重新生成预演计划。
 - 只有老师明确说“确认归档”“可以执行”等同意语句后，才能运行 `apply --confirm`。
 
-### 1. 确认输入
+#### 1. 确认输入
 
 需要三个位置：
 
@@ -44,7 +62,7 @@ description: Batch-organize teachers' classroom project materials into per-stude
 
 清单可沿用现有班级数据，也可参考 [roster.example.json](references/roster.example.json)。至少要有学生姓名和项目名称；小名、旧题目或文件夹简称放入 `aliases` 和 `project_aliases`。
 
-### 2. 生成预演计划
+#### 2. 生成预演计划
 
 ```bash
 node scripts/organize-materials.mjs plan \
@@ -59,7 +77,7 @@ node scripts/organize-materials.mjs plan \
 
 脚本同时生成 JSON 和同名 Markdown 摘要。向老师报告：总文件数、可归档数、待确认数、重复数，以及每个学生的材料分布。不要只说“整理好了”。
 
-### 3. 审核计划
+#### 3. 审核计划
 
 重点检查 `needs_review`：
 
@@ -87,7 +105,7 @@ node scripts/organize-materials.mjs plan \
 
 重新运行 `plan` 时增加 `--overrides "人工修正.json"`。若只修改已生成计划，也可把条目的 `status` 改为 `approved`，但目标路径仍需符合标准目录。
 
-### 4. 获得确认后执行
+#### 4. 获得确认后执行
 
 向老师展示简短变更摘要并明确等待确认。确认后运行：
 
@@ -97,7 +115,7 @@ node scripts/organize-materials.mjs apply --plan "整理预演.json" --confirm
 
 执行只处理 `ready` 和 `approved` 项；`needs_review` 保持原位。每个学生档案写入 `整理归档记录.jsonl`，计划旁生成执行结果 JSON。
 
-### 5. 核验结果
+#### 5. 核验结果
 
 ```bash
 node scripts/organize-materials.mjs audit \
@@ -108,7 +126,7 @@ node scripts/organize-materials.mjs audit \
 
 报告每名学生各目录文件数、缺少的必交项、`99 待确认` 数量和重复哈希。材料“存在”不等于“验收通过”，不要自动给出最终验收结论。
 
-## 判断优先级
+### 判断优先级
 
 1. 人工覆盖规则。
 2. 路径中的学生姓名、小名、项目名。
@@ -120,4 +138,4 @@ node scripts/organize-materials.mjs audit \
 
 ## 当前边界
 
-本版本负责批量整理、复制、去重、命名、记录和缺项检查。它暂不负责材料内容质量验收、照片人脸处理、视频清晰度分析、学生项目事实审核、课堂看板同步或最终交付压缩包生成。
+本版本负责材料整理、复制、去重、命名、记录、缺项检查，以及基于教师事实生成每日回课草稿。它不自动验收图片和视频质量，不判断学生项目事实真伪，不替老师发送家长消息，也不在未经确认时把回课写入学生档案。
