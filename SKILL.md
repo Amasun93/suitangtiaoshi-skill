@@ -1,19 +1,21 @@
 ---
 name: suitangtiaoshi-skill
-description: "Teacher-side classroom support for two connected workflows: (1) batch-organize student project materials into per-student delivery archives with preview, confirmation, deduplication, and audit; (2) generate or polish daily parent feedback from D1-D7 course templates and teachers' factual student observations. Use when a teacher asks to organize classroom materials, inspect archive gaps, prepare a daily class recap, polish a student's classroom performance note, or batch-generate parent-ready feedback. Never delete source materials, guess student identity, or invent classroom facts."
+description: "Teacher-side classroom support for batch-organizing student project materials, preparing daily parent feedback, and handing confirmed student archives to the ideaLab Student defense-presentation workflow. Use when a teacher asks to organize materials, inspect archive or defense-evidence gaps, prepare a daily recap, polish student observations, or coordinate final-defense preparation. Never delete source materials, guess student identity, invent classroom facts, or duplicate the student-side presentation generator."
 ---
 
 # 随堂调试：教师课堂工作流
 
-本 Skill 面向教师，提供两项相互关联但独立执行的能力：
+本 Skill 面向教师，提供三项相互关联但独立执行的能力：
 
 1. 整理学生项目素材并检查档案缺项。
 2. 根据真实课堂情况生成每日家长回课。
+3. 把确认过的学生档案交给 `idealab-student-skills` 的答辩模块。
 
 ## 路由
 
 - 老师提出整理、归档、分类、去重、缺项检查时，执行“材料整理与归档”。
 - 老师提出回课、家长反馈、学生表现润色、D1—D7模板或成长总结时，必须完整读取 [daily-parent-feedback.md](references/daily-parent-feedback.md)。需要生成当天公共内容时，再完整读取 [seven-day-feedback-templates.md](references/seven-day-feedback-templates.md)。
+- 老师提出给学生做最终答辩、批量检查答辩素材、生成演示或逐页参考稿时，先完整读取 [defense-presentation-routing.md](references/defense-presentation-routing.md)。教师端只负责归档与缺项报告；实际生成由学生统一入口调用内置答辩模块。
 - 同一请求同时包含素材整理和回课时，先核对素材事实，再生成回课；归档写入仍需单独确认。
 
 ## 共通原则
@@ -138,4 +140,4 @@ node scripts/organize-materials.mjs audit \
 
 ## 当前边界
 
-本版本负责材料整理、复制、去重、命名、记录、缺项检查，以及基于教师事实生成每日回课草稿。它不自动验收图片和视频质量，不判断学生项目事实真伪，不替老师发送家长消息，也不在未经确认时把回课写入学生档案。
+本版本负责材料整理、复制、去重、命名、记录、缺项检查、学生答辩准备交接，以及基于教师事实生成每日回课草稿。它不自动验收图片和视频质量，不判断学生项目事实真伪，不在教师端复制一套答辩生成器，不替老师发送家长消息，也不在未经确认时把回课写入学生档案。

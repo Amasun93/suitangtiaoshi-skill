@@ -1,4 +1,4 @@
 interface:
   display_name: "随堂调试 Skill"
-  short_description: "面向教师的项目材料归档、每日回课与学生表现润色工具"
-  default_prompt: "使用 $suitangtiaoshi-skill 整理课堂材料，或根据今天的真实情况生成家长回课。"
+  short_description: "教师材料归档、回课反馈与学生答辩准备交接"
+  default_prompt: "使用 $suitangtiaoshi-skill 整理课堂材料、生成真实回课，或检查学生答辩素材并交给 ideaLab Student 继续制作。"
