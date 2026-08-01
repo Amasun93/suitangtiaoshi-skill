@@ -5,8 +5,8 @@
 ## 分工
 
 - `suitangtiaoshi-skill`：教师批量整理、核对归属、标记缺项并完成归档。
-- `idealab-student-skills`：学生唯一入口；自动调用其内置 `defense-presentation` 模块生成答辩演示、逐页参考稿、素材盘点和练习页。
-- 不要求学生记住 `defense-presentation` 名称，也不在教师 Skill 内维护第二套生成器。
+- `idealab-student-skills`：学生唯一入口；自动调用其内置 `idealab-presentation` 模块生成答辩演示、逐页参考稿、素材盘点和练习页。
+- 不要求学生记住 `idealab-presentation` 名称，也不在教师 Skill 内维护第二套生成器。
 
 ## 教师端流程
 
@@ -37,7 +37,7 @@
 WorkBuddy 更新 `idealab-student-skills` 后，应运行：
 
 ```bash
-node scripts/manage-bundled-skills.mjs check defense-presentation
+node scripts/manage-bundled-skills.mjs check idealab-presentation
 ```
 
 检查通过只表示模块文件完整，不表示某名学生的答辩素材已经齐全。

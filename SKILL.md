@@ -1,6 +1,6 @@
 ---
 name: suitangtiaoshi-skill
-description: "Teacher-side classroom support for batch-organizing student project materials, preparing daily parent feedback, and handing confirmed student archives to the ideaLab Student defense-presentation workflow. Use when a teacher asks to organize materials, inspect archive or defense-evidence gaps, prepare a daily recap, polish student observations, or coordinate final-defense preparation. Never delete source materials, guess student identity, invent classroom facts, or duplicate the student-side presentation generator."
+description: "Teacher-side classroom support for batch-organizing student project materials, preparing daily parent feedback, and handing confirmed student archives to the idealab-presentation module bundled inside ideaLab Student. Use when a teacher asks to organize materials, inspect archive or defense-evidence gaps, prepare a daily recap, polish student observations, or coordinate final-defense preparation. Never delete source materials, guess student identity, invent classroom facts, or duplicate the student-side presentation generator."
 ---
 
 # 随堂调试：教师课堂工作流
@@ -15,7 +15,7 @@ description: "Teacher-side classroom support for batch-organizing student projec
 
 - 老师提出整理、归档、分类、去重、缺项检查时，执行“材料整理与归档”。
 - 老师提出回课、家长反馈、学生表现润色、D1—D7模板或成长总结时，必须完整读取 [daily-parent-feedback.md](references/daily-parent-feedback.md)。需要生成当天公共内容时，再完整读取 [seven-day-feedback-templates.md](references/seven-day-feedback-templates.md)。
-- 老师提出给学生做最终答辩、批量检查答辩素材、生成演示或逐页参考稿时，先完整读取 [defense-presentation-routing.md](references/defense-presentation-routing.md)。教师端只负责归档与缺项报告；实际生成由学生统一入口调用内置答辩模块。
+- 老师提出给学生做最终答辩、批量检查答辩素材、生成演示或逐页参考稿时，先完整读取 [idealab-presentation-routing.md](references/idealab-presentation-routing.md)。教师端只负责归档与缺项报告；实际生成由学生统一入口调用内置答辩模块。
 - 同一请求同时包含素材整理和回课时，先核对素材事实，再生成回课；归档写入仍需单独确认。
 
 ## 共通原则
