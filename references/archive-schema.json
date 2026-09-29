@@ -14,13 +14,13 @@
       "minimum_files": null,
       "subitems": [
         {"key": "function_images", "folder": "功能实现图（4张）", "label": "功能实现", "minimum_files": 4},
-        {"key": "experiment_images", "folder": "实验关键图片（6张）", "label": "实验关键", "minimum_files": null, "target_files": 6},
-        {"key": "prototype_images", "folder": "项目原型图（1-2张）", "label": "装置原型", "minimum_files": 1, "maximum_files": 2},
+        {"key": "experiment_images", "folder": "实验过程与结果图（可选）", "label": "实验过程与结果（可由功能实现图承担）", "minimum_files": null, "target_files": null, "substitutable_by": "function_images"},
+        {"key": "prototype_images", "folder": "项目原型图", "label": "装置原型（仅装置结构图）", "minimum_files": 1, "maximum_files": null},
         {"key": "process_images", "folder": "制作过程关键图（5张以上）", "label": "制作过程", "minimum_files": 5},
         {"key": "reference_images", "folder": "其他参考资料", "label": "参考资料", "minimum_files": null}
       ]
     },
-    {"key": "defense_ppt", "folder": "06 答辩ppt", "label": "答辩PPT", "required": true, "minimum_files": 1},
+    {"key": "defense_ppt", "folder": "06 答辩材料", "label": "答辩材料", "required": false, "minimum_files": null},
     {"key": "demo_video", "folder": "07 项目视频", "label": "演示视频", "required": true, "minimum_files": 1},
     {"key": "handover_form", "folder": "08 项目装置交接单", "label": "项目装置交接单", "required": true, "minimum_files": 1},
     {"key": "student_paper", "folder": "09 可选-学生论文", "label": "学生论文", "required": false, "minimum_files": null},

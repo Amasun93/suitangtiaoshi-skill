@@ -269,7 +269,7 @@ async function suggestedTarget({ source, relative, student, archiveName, categor
   } else if (category === "topic_book") targetName = `${student.name}-开题书-${originLabel(origin)}${extension}`;
   else if (category === "project_manual") targetName = `${student.name}-学生项目手册-${originLabel(origin)}${extension}`;
   else if (category === "drawings") targetName = `${student.project_short}-项目图纸-${originalStem}${extension}`;
-  else if (category === "defense_ppt") targetName = `${student.name}-${student.project_short}-答辩PPT-${originLabel(origin)}${extension}`;
+  else if (category === "defense_ppt") targetName = `${student.name}-${student.project_short}-${(schema.extensions?.videos || []).includes(extension) ? "答辩视频" : "答辩PPT"}-${originLabel(origin)}${extension}`;
   else if (category === "demo_video") targetName = `${student.project_short}-演示视频-${origin === "student" ? "学生正式版" : origin === "teacher" ? "老师讲解版" : originLabel(origin)}${extension}`;
   else if (category === "handover_form") targetName = `${student.name}-项目装置交接单-${origin === "student" ? "签字版" : originLabel(origin)}${extension}`;
   else if (category === "student_paper") targetName = `${student.name}-${student.project_short}-学生论文${extension}`;
